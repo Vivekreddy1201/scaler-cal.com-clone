@@ -181,12 +181,12 @@ export default function EventTypesPage() {
             <div
               key={event.id}
               className={cn(
-                "group flex flex-col sm:flex-row sm:items-center justify-between p-[20px] hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors cursor-pointer",
+                "group flex items-start sm:items-center justify-between p-[20px] hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors cursor-pointer",
                 index !== filteredEventTypes.length - 1 ? "border-b border-zinc-100 dark:border-zinc-800" : ""
               )}
               onClick={() => router.push(`/events/${event.id}`)}
             >
-              <div className="mb-4 sm:mb-0 flex flex-col gap-2 pr-4">
+              <div className="flex flex-col gap-2 pr-4 flex-1">
                 <div className="flex items-center flex-wrap gap-2 leading-none">
                   <h3 className="text-base font-bold text-zinc-900 dark:text-white leading-none">{event.title}</h3>
                   <span className="text-[14px] text-zinc-500 leading-none mr-2">/{event.slug}</span>
