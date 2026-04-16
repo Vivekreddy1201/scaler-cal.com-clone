@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { AdminLayout } from "@/components/AdminLayout";
 import { fetchSchedules, createSchedule, deleteSchedule, fetchAvailabilities, updateAvailabilities, setDefaultSchedule, updateSchedule, fetchEventTypes, updateEventType, fetchScheduleOverrides, updateScheduleOverrides } from "@/lib/api";
@@ -186,7 +186,7 @@ const CustomTimeSelect = ({ value, onChange }: { value: string, onChange: (v: st
   );
 };
 
-export default function AvailabilityPage() {
+function AvailabilityPageContent() {
   const searchParams = useSearchParams();
   const scheduleIdFromQuery = searchParams ? searchParams.get("scheduleId") : null;
 
@@ -1087,5 +1087,13 @@ export default function AvailabilityPage() {
         />
       )}
     </AdminLayout>
+  );
+}
+
+export default function AvailabilityPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AvailabilityPageContent />
+    </Suspense>
   );
 }
