@@ -57,6 +57,8 @@ Our stack is lean, type-safe, and highly scalable:
 
 ## 🚀 Live Production Deployment
 
+**🌐 Live URL:** [https://scaler-cal-com-clone.vercel.app/](https://scaler-cal-com-clone.vercel.app/)
+
 The codebase is natively configured for an immediate 1-click cloud deployment.
 
 - **Frontend Hosting**: Rendered and distributed securely via **Vercel** (`frontend` directory).
