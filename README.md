@@ -1,145 +1,160 @@
-Cal.com Clone
+Cal.com Clone - Full Stack Scheduling Platform
 
-Build a scheduling and booking application that replicates core functionality and user experience of Cal.com, including event creation, availability management, and public booking.
+Description  
+This project is a full-stack scheduling and booking application inspired by Cal.com. It allows users to create event types, define availability, and share public booking links where others can schedule meetings.
 
- Live Demo
+Live Demo  
+https://scaler-cal-com-clone.vercel.app/
 
- https://scaler-cal-com-clone.vercel.app/
+Overview  
+The application enables users to manage their schedules and allows external users to book time slots based on defined availability. It focuses on clean architecture, efficient scheduling logic, and a smooth booking experience.
 
- GitHub Repository
+Tech Stack  
 
- https://github.com/Vivekreddy1201/scaler-cal.com-clone
+Frontend  
+- Next.js (App Router)  
+- TypeScript  
+- Tailwind CSS  
+- date-fns  
 
- Overview
+Backend  
+- FastAPI  
+- SQLAlchemy  
+- PostgreSQL  
 
-This project is a full-stack scheduling application that allows users to:
+Deployment  
+- Frontend hosted on Vercel  
+- Backend and database hosted on Render  
 
-Create and manage event types
-Configure weekly availability and time slots
-Share public booking links
-Accept bookings from external users
-Prevent double bookings using backend validation
+Core Features  
 
-The application is built with a focus on clean architecture, scalability, and real-world scheduling logic.
+Event Types Management  
+- Create event types with title, description, duration, and unique slug  
+- Edit and delete event types  
+- Each event type has a public booking link  
 
-Tech Stack
-Frontend
-Framework: Next.js (App Router)
-Language: TypeScript
-Styling: Tailwind CSS
-Date Handling: date-fns
-Backend
-Framework: FastAPI
-ORM: SQLAlchemy
-Database: PostgreSQL
-Deployment
-Frontend: Vercel
-Backend + DB: Render
-Core Features
-1. Event Types Management
-Create event types (title, description, duration, slug)
-Edit and delete events
-Unique public booking link for each event
-2. Availability Settings
-Set working days (e.g., Mon–Fri)
-Configure daily time ranges
-Timezone-aware scheduling
-3. Public Booking Page
-Calendar-based date selection
-Dynamic time slot generation
-Booking form (name + email)
-Double booking prevention (server-side validation)
-Booking confirmation
-4. Bookings Dashboard
-View upcoming bookings
-View past bookings
-Cancel bookings
-Bonus Features Implemented
-Buffer time between meetings
-Multiple availability schedules
-Date overrides (custom availability per day)
-Responsive UI
-System Design & Architecture
-Backend
-RESTful API using FastAPI
-Modular structure:
-Routes → Business Logic → Database Layer
-Slot generation logic:
-Based on availability + duration + buffer
-Conflict prevention:
-Booking validation before insert
-Database Design
+Availability Settings  
+- Configure working days  
+- Set daily time ranges  
+- Timezone-aware scheduling  
 
-Key tables:
+Public Booking  
+- Calendar-based date selection  
+- Dynamic time slot generation  
+- Booking form with name and email  
+- Prevention of double booking using backend validation  
+- Booking confirmation  
 
-users (default user assumed)
-event_types
-availability
-bookings
+Bookings Dashboard  
+- View upcoming bookings  
+- View past bookings  
+- Cancel bookings  
 
-Relationships:
+Bonus Features  
+- Buffer time between meetings  
+- Multiple availability schedules  
+- Date overrides  
+- Responsive UI  
 
-One user → many event types
-One event type → many bookings
-Availability linked to user
-Key Challenges & Solutions
-1. Preventing Double Booking
-Implemented backend validation before confirming booking
-Ensures slot is still available at request time
-2. Time Slot Generation
-Dynamically generated slots using:
-Start time
-End time
-Event duration
-Buffer time
-3. Timezone Handling
-Stored timestamps in UTC
-Converted to user timezone on frontend
-Sample API
-Create Booking
-POST /api/bookings
+System Design  
+
+The application follows a client-server architecture with clear separation between frontend and backend.
+
+Backend  
+- REST API built using FastAPI  
+- Modular structure with routes, services, and database layers  
+- Slot generation based on availability, duration, and buffer time  
+- Server-side validation to prevent booking conflicts  
+
+Database Design  
+- users table (default user assumed)  
+- event_types table  
+- availability table  
+- schedules table  
+- date_overrides table  
+- bookings table  
+
+Relationships  
+- One user can have multiple event types  
+- One event type can have multiple bookings  
+- Availability linked to schedules  
+
+Core Logic  
+
+Slot Generation  
+- Check date overrides or weekly availability  
+- Generate slots based on duration and working hours  
+- Apply buffer time before and after events  
+- Remove slots that overlap with existing bookings  
+
+Double Booking Prevention  
+- Booking validation performed at backend before saving  
+
+Timezone Handling  
+- All timestamps stored in UTC  
+- Converted to local timezone on frontend  
+
+API Endpoints  
+
+Event Types  
+- GET /api/event-types  
+- GET /api/event-types/{id}  
+- POST /api/event-types  
+- PUT /api/event-types/{id}  
+- DELETE /api/event-types/{id}  
+
+Schedules and Availability  
+- GET /api/schedules  
+- POST /api/schedules  
+- PUT /api/schedules/{id}/default  
+- GET /api/schedules/{id}/availability  
+- PUT /api/schedules/{id}/availability  
+- GET /api/schedules/{id}/overrides  
+- PUT /api/schedules/{id}/overrides  
+
+Public Booking  
+- GET /api/public/event-types/{slug}  
+- GET /api/public/slots/{slug}?target_date=YYYY-MM-DD  
+- POST /api/bookings  
+
+Bookings  
+- GET /api/bookings  
+- PATCH /api/bookings/{id}/cancel  
+
+Sample API  
+
+POST /api/bookings  
+
 {
   "event_type_id": 1,
   "start_time": "2026-04-16T10:00:00Z",
   "end_time": "2026-04-16T10:30:00Z",
-  "name": "John Doe",
-  "email": "john@example.com"
+  "name": "ram",
+  "email": "ram@gmail.com"
 }
-Local Setup
-1. Clone Repository
-git clone https://github.com/Vivekreddy1201/scaler-cal.com-clone
-cd scaler-cal.com-clone
-2. Backend Setup
-cd backend
 
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+Local Setup  
 
-pip install -r requirements.txt
+1. Clone repository  
+git clone https://github.com/Vivekreddy1201/scaler-cal.com-clone  
+cd scaler-cal.com-clone  
 
-# Run migrations / seed data
-python seed.py
+2. Backend setup  
+cd backend  
 
-uvicorn main:app --reload
-3. Frontend Setup
-cd frontend
+python -m venv venv  
+source venv/bin/activate   (Windows: venv\Scripts\activate)  
 
-npm install
-npm run dev
-Assumptions
-Single default user (no authentication required)
-Email notifications not implemented
-Basic validation for booking inputs
-📸 Screenshots
+pip install -r requirements.txt  
+python seed.py  
 
-(Add screenshots here for better presentation)
+uvicorn main:app --reload  
 
-Evaluation Readiness
+3. Frontend setup  
+cd frontend  
 
-This project satisfies:
+npm install  
+npm run dev  
 
-Functionality (all core features)
-UI/UX (Cal.com-inspired design)
-Database design (normalized schema)
-Code quality (modular structure)
-Code understanding (well-defined logic layers)
+Assumptions  
+- Single default user (no authentication implemented)  
