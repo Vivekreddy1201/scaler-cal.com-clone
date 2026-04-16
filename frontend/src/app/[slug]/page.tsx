@@ -24,7 +24,7 @@ export default function BookingPage() {
   // Step 1: Calendar
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [slots, setSlots] = useState<{start_time: string, end_time: string}[]>([]);
+  const [slots, setSlots] = useState<{ start_time: string, end_time: string }[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [timezone, setTimezone] = useState("UTC");
@@ -65,9 +65,9 @@ export default function BookingPage() {
     try {
       const targetDate = format(date, "yyyy-MM-dd");
       const data = await fetchPublicSlots(slug, targetDate);
-      
+
       const now = new Date();
-      const validSlots = (data.slots || []).filter((s: {start_time: string, end_time: string}) => {
+      const validSlots = (data.slots || []).filter((s: { start_time: string, end_time: string }) => {
         const slotTime = new Date(s.start_time);
         return slotTime > now;
       });
@@ -127,34 +127,34 @@ export default function BookingPage() {
       {step === "success" ? (
         <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111]">
           <div className="p-8 md:p-12 text-center flex flex-col items-center">
-             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-500">
-               <CheckCircle className="h-8 w-8" />
-             </div>
-             <h1 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">This meeting is scheduled</h1>
-             <p className="text-zinc-600 dark:text-zinc-400 mb-8">We sent an email with a calendar invitation to <span className="font-medium text-zinc-900 dark:text-zinc-200">{email}</span>.</p>
-             <div className="w-full max-w-md border border-zinc-200 rounded-lg p-6 text-left dark:border-zinc-800">
-               <h3 className="font-bold text-lg text-zinc-900 dark:text-white mb-4">{eventType.title}</h3>
-               <div className="flex items-center text-zinc-600 dark:text-zinc-400 mb-3 font-medium">
-                 <CalendarIcon className="mr-3 h-5 w-5" />
-                 <span>{format(parseISO(selectedSlot!), "EEEE, MMMM d, yyyy")}</span>
-               </div>
-               <div className="flex items-center text-zinc-600 dark:text-zinc-400 mb-3 font-medium">
-                 <Clock className="mr-3 h-5 w-5" />
-                 <span>{format(parseISO(selectedSlot!), "h:mm a")}</span>
-               </div>
-               <div className="flex items-center text-zinc-600 dark:text-zinc-400 font-medium">
-                 <Globe className="mr-3 h-5 w-5" />
-                 <span>{timezone}</span>
-               </div>
-             </div>
-             <div className="mt-8 border-t border-zinc-100 dark:border-zinc-800/50 pt-8 w-full max-w-md">
-               <Link
-                 href="/"
-                 className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
-               >
-                 Back to Dashboard
-               </Link>
-             </div>
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-500">
+              <CheckCircle className="h-8 w-8" />
+            </div>
+            <h1 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">This meeting is scheduled</h1>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-8">We sent an email with a calendar invitation to <span className="font-medium text-zinc-900 dark:text-zinc-200">{email}</span>.</p>
+            <div className="w-full max-w-md border border-zinc-200 rounded-lg p-6 text-left dark:border-zinc-800">
+              <h3 className="font-bold text-lg text-zinc-900 dark:text-white mb-4">{eventType.title}</h3>
+              <div className="flex items-center text-zinc-600 dark:text-zinc-400 mb-3 font-medium">
+                <CalendarIcon className="mr-3 h-5 w-5" />
+                <span>{format(parseISO(selectedSlot!), "EEEE, MMMM d, yyyy")}</span>
+              </div>
+              <div className="flex items-center text-zinc-600 dark:text-zinc-400 mb-3 font-medium">
+                <Clock className="mr-3 h-5 w-5" />
+                <span>{format(parseISO(selectedSlot!), "h:mm a")}</span>
+              </div>
+              <div className="flex items-center text-zinc-600 dark:text-zinc-400 font-medium">
+                <Globe className="mr-3 h-5 w-5" />
+                <span>{timezone}</span>
+              </div>
+            </div>
+            <div className="mt-8 border-t border-zinc-100 dark:border-zinc-800/50 pt-8 w-full max-w-md">
+              <Link
+                href="/"
+                className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+              >
+                Back to Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       ) : (
@@ -172,7 +172,7 @@ export default function BookingPage() {
               <p className="text-zinc-500 dark:text-zinc-400 font-semibold text-sm">Cal Clone User</p>
               <h1 className="mt-1 text-2xl font-bold text-zinc-900 dark:text-white leading-tight">{eventType.title}</h1>
             </div>
-            
+
             <div className="space-y-4 font-semibold text-zinc-500 dark:text-zinc-400">
               <div className="flex items-center">
                 <Clock className="mr-3 h-5 w-5 text-zinc-400" />
@@ -194,7 +194,7 @@ export default function BookingPage() {
                 </div>
               )}
             </div>
-            
+
             {eventType.description && (
               <p className="mt-6 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
                 {eventType.description}
@@ -207,10 +207,10 @@ export default function BookingPage() {
             {step === "calendar" ? (
               <div className="flex flex-col md:flex-row gap-8 h-full">
                 {/* Calendar Column */}
-                <div className="flex-1 w-full md:min-w-[320px]">
+                <div className="flex-1 min-w-[320px]">
                   <h2 className="mb-6 text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Select a Date & Time</h2>
                   <div className="mb-4 flex items-center justify-between">
-                    <button 
+                    <button
                       onClick={() => setCurrentDate(addDays(currentDate, -30))}
                       className="p-1 rounded-md hover:bg-zinc-100 text-zinc-500 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-white transition"
                     >
@@ -219,7 +219,7 @@ export default function BookingPage() {
                     <span className="font-semibold text-zinc-900 dark:text-white">
                       {format(currentDate, "MMMM yyyy")}
                     </span>
-                    <button 
+                    <button
                       onClick={() => setCurrentDate(addDays(currentDate, 30))}
                       className="p-1 rounded-md hover:bg-zinc-100 text-zinc-500 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-white transition"
                     >
@@ -233,15 +233,15 @@ export default function BookingPage() {
                     {days.map((day, i) => {
                       const isCurrentMonth = isSameMonth(day, monthStart);
                       const isSelected = selectedDate && isSameDay(day, selectedDate);
-                      const isPast = day < new Date(new Date().setHours(0,0,0,0));
-                      
+                      const isPast = day < new Date(new Date().setHours(0, 0, 0, 0));
+
                       const jsDay = day.getDay();
                       const pythonDay = jsDay === 0 ? 6 : jsDay - 1;
                       // Fallback to true if availableDaysOfWeek is completely empty just in case API failed
                       const hasSchedule = availableDaysOfWeek.length === 0 || availableDaysOfWeek.includes(pythonDay);
-                      
+
                       const isDisabled = !isCurrentMonth || isPast || !hasSchedule;
-                      
+
                       return (
                         <button
                           key={i}
@@ -252,8 +252,8 @@ export default function BookingPage() {
                             isDisabled
                               ? "text-zinc-300 dark:text-zinc-500 cursor-not-allowed bg-transparent font-normal"
                               : isSelected
-                              ? "bg-zinc-900 text-white dark:bg-white dark:text-black font-bold"
-                              : "text-zinc-900 bg-zinc-100 hover:bg-zinc-200 dark:text-zinc-200 dark:bg-[#333] dark:hover:bg-zinc-700 font-semibold"
+                                ? "bg-zinc-900 text-white dark:bg-white dark:text-black font-bold"
+                                : "text-zinc-900 bg-zinc-100 hover:bg-zinc-200 dark:text-zinc-200 dark:bg-[#333] dark:hover:bg-zinc-700 font-semibold"
                           )}
                         >
                           {format(day, dateFormat)}
@@ -276,22 +276,22 @@ export default function BookingPage() {
                     </select>
                   </div>
                 </div>
-                
+
                 {/* Time Slots Column (Third Column) */}
                 {selectedDate && (
-                  <div className="w-full md:w-[200px] flex flex-col pt-6 md:pt-14 animate-in fade-in slide-in-from-right-4 duration-300 md:h-[480px]">
+                  <div className="w-[200px] flex flex-col pt-14 animate-in fade-in slide-in-from-right-4 duration-300 h-[480px]">
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="text-[15px] font-semibold text-zinc-900 dark:text-zinc-100">
                         {format(selectedDate, "EEE d")}
                       </h3>
                       <div className="flex items-center rounded-full bg-zinc-100 p-[3px] dark:bg-[#1a1a1a]">
-                        <button 
+                        <button
                           onClick={() => setTimeFormat("12h")}
                           className={cn("px-2.5 py-1 text-xs font-semibold rounded-full transition-colors", timeFormat === "12h" ? "bg-white text-black shadow-sm dark:bg-[#333] dark:text-white" : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200")}
                         >
                           12h
                         </button>
-                        <button 
+                        <button
                           onClick={() => setTimeFormat("24h")}
                           className={cn("px-2.5 py-1 text-xs font-semibold rounded-full transition-colors", timeFormat === "24h" ? "bg-white text-black shadow-sm dark:bg-[#333] dark:text-white" : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200")}
                         >
@@ -316,7 +316,7 @@ export default function BookingPage() {
                                   : "border-zinc-300 text-zinc-900 hover:border-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500"
                               )}
                             >
-                              {timeFormat === "12h" 
+                              {timeFormat === "12h"
                                 ? format(parseISO(s.start_time), "h:mma").toLowerCase()
                                 : format(parseISO(s.start_time), "HH:mm")}
                             </button>
@@ -359,7 +359,7 @@ export default function BookingPage() {
                       className="w-full rounded-lg border border-zinc-300 px-3 py-2.5 text-[15px] focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-[#111] dark:text-white"
                     />
                   </div>
-                  
+
                   <div className="space-y-1.5">
                     <label className="block text-[15px] font-bold text-zinc-900 dark:text-zinc-100">Additional notes</label>
                     <textarea
@@ -368,7 +368,7 @@ export default function BookingPage() {
                       className="w-full rounded-lg border border-zinc-300 px-3 py-2.5 text-[15px] focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-[#111] dark:text-zinc-300 placeholder:text-zinc-500 resize-none"
                     />
                   </div>
-                  
+
                   <p className="pt-2 pb-2 text-[13px] font-semibold text-zinc-500 dark:text-zinc-400">
                     By proceeding, you agree to Cal.com's <span className="text-zinc-900 dark:text-zinc-200">Terms</span> and <span className="text-zinc-900 dark:text-zinc-200">Privacy Policy</span>.
                   </p>

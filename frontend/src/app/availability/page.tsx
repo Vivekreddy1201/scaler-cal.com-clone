@@ -940,17 +940,25 @@ function AvailabilityPageContent() {
           </div>
           <button
             onClick={() => setShowNewScheduleModal(true)}
-            className="flex items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-[15px] font-medium text-white hover:bg-zinc-800 transition whitespace-nowrap shadow-sm shrink-0 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            className="hidden md:flex items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-[15px] font-medium text-white hover:bg-zinc-800 transition whitespace-nowrap shadow-sm shrink-0 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
           >
             <Plus className="mr-1.5 h-4 w-4" />
             New
+          </button>
+          
+          {/* Mobile FAB */}
+          <button
+            onClick={() => setShowNewScheduleModal(true)}
+            className="md:hidden fixed bottom-20 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
+          >
+            <Plus className="h-6 w-6 stroke-[2]" />
           </button>
         </div>
 
         {loading ? (
           <div className="py-12 text-center text-zinc-500">Loading schedules...</div>
         ) : (
-          <div className="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111]">
+          <div className="flex flex-col overflow-hidden border-y border-transparent md:border-zinc-200 md:bg-white md:shadow-sm md:rounded-xl md:dark:border-zinc-800 md:dark:bg-[#111]">
             {schedules.length === 0 ? (
                <div className="py-12 text-center">
                  <p className="text-zinc-500">No schedules available.</p>
@@ -993,7 +1001,7 @@ function AvailabilityPageContent() {
                         e.stopPropagation();
                         setActiveDropdown(activeDropdown === schedule.id ? null : schedule.id);
                       }}
-                      className="p-2 text-zinc-500 rounded-md border border-zinc-200 hover:bg-zinc-100 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 transition shadow-sm"
+                      className="p-2 text-zinc-500 rounded-lg border border-zinc-200 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 transition shadow-sm"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </button>

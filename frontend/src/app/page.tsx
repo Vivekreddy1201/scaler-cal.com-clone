@@ -152,10 +152,18 @@ export default function EventTypesPage() {
           </div>
           <button
             onClick={openNewForm}
-            className="flex items-center justify-center rounded-xl bg-zinc-900 px-3 py-2 text-[14px] font-semibold text-white hover:bg-zinc-800 transition whitespace-nowrap shadow-sm dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            className="hidden md:flex items-center justify-center rounded-xl bg-zinc-900 px-3 py-2 text-[14px] font-semibold text-white hover:bg-zinc-800 transition whitespace-nowrap shadow-sm dark:bg-white dark:text-black dark:hover:bg-zinc-200"
           >
             <Plus className="mr-1.5 h-[18px] w-[18px]" strokeWidth={2.5} />
             New
+          </button>
+          
+          {/* Mobile FAB */}
+          <button
+            onClick={openNewForm}
+            className="md:hidden fixed bottom-20 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
+          >
+            <Plus className="h-6 w-6 stroke-[2]" />
           </button>
         </div>
       </div>
@@ -168,11 +176,14 @@ export default function EventTypesPage() {
           <p className="mt-2 text-sm text-zinc-500">Get started by creating your first event type.</p>
         </div>
       ) : (
-        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-[#111] shadow-sm divide-y divide-zinc-200 dark:divide-zinc-800/80">
-          {filteredEventTypes.map((event) => (
+        <div className="flex flex-col overflow-hidden border-y border-transparent md:border-zinc-200 md:bg-white md:shadow-sm md:rounded-xl md:dark:border-zinc-800 md:dark:bg-[#111]">
+          {filteredEventTypes.map((event, index) => (
             <div
               key={event.id}
-              className="group flex flex-col sm:flex-row sm:items-center justify-between p-[20px] hover:bg-zinc-50 dark:hover:bg-[#151515] transition-colors cursor-pointer"
+              className={cn(
+                "group flex flex-col sm:flex-row sm:items-center justify-between p-[20px] hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors cursor-pointer",
+                index !== filteredEventTypes.length - 1 ? "border-b border-zinc-100 dark:border-zinc-800" : ""
+              )}
               onClick={() => router.push(`/events/${event.id}`)}
             >
               <div className="mb-4 sm:mb-0 flex flex-col gap-2 pr-4">
@@ -196,29 +207,29 @@ export default function EventTypesPage() {
 
               <div className="flex items-center gap-4 sm:gap-6 shrink-0" onClick={(e) => e.stopPropagation()}>
                 {/* Button Group */}
-                <div className="flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 shadow-sm relative">
+                <div className="flex items-center md:rounded-md md:border border-zinc-200 dark:border-zinc-800 shadow-sm relative">
                   <a
                     href={`/${event.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-l-md bg-transparent"
+                    className="hidden md:flex p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-l-md bg-transparent"
                     title="Open in new tab"
                   >
                     <ExternalLink className="h-[18px] w-[18px] stroke-[2px]" />
                   </a>
-                  <div className="w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="hidden md:block w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
                   <button
                     onClick={() => copyToClipboard(event.id, event.slug)}
-                    className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition bg-transparent"
+                    className="hidden md:flex p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition bg-transparent"
                     title="Copy link"
                   >
                     {copiedId === event.id ? <Check className="h-[18px] w-[18px] text-green-500 stroke-[2px]" /> : <LinkIcon className="h-[18px] w-[18px] stroke-[2px]" />}
                   </button>
-                  <div className="w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="hidden md:block w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
                   <div className="relative">
                     <button
                       onClick={() => setActiveDropdown(activeDropdown === event.id ? null : event.id)}
-                      className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-r-md bg-transparent"
+                      className="p-2 text-zinc-600 border border-zinc-200 dark:border-zinc-700 md:border-transparent rounded-lg hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 transition md:rounded-r-md bg-transparent"
                     >
                       <MoreHorizontal className="h-[18px] w-[18px] stroke-[2px]" />
                     </button>
