@@ -934,7 +934,7 @@ function AvailabilityPageContent() {
     <AdminLayout>
       <div className="pl-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-          <div>
+          <div className="hidden md:block">
             <h1 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Availability</h1>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Configure times when you are available for bookings.</p>
           </div>

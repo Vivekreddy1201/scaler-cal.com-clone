@@ -135,7 +135,7 @@ export default function EventTypesPage() {
   return (
     <AdminLayout>
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
-        <div>
+        <div className="hidden md:block">
           <h1 className="text-[22px] font-bold text-zinc-900 dark:text-white tracking-tight">Event types</h1>
           <p className="text-[15px] text-zinc-500 dark:text-zinc-400 mt-1">Configure different events for people to book on your calendar.</p>
         </div>
@@ -207,7 +207,7 @@ export default function EventTypesPage() {
 
               <div className="flex items-center gap-4 sm:gap-6 shrink-0" onClick={(e) => e.stopPropagation()}>
                 {/* Button Group */}
-                <div className="flex items-center md:rounded-md md:border border-zinc-200 dark:border-zinc-800 shadow-sm relative">
+                <div className="flex items-center md:rounded-md md:border border-transparent md:border-zinc-200 md:dark:border-zinc-800 relative">
                   <a
                     href={`/${event.slug}`}
                     target="_blank"
@@ -229,7 +229,7 @@ export default function EventTypesPage() {
                   <div className="relative">
                     <button
                       onClick={() => setActiveDropdown(activeDropdown === event.id ? null : event.id)}
-                      className="p-2 text-zinc-600 border border-zinc-200 dark:border-zinc-700 md:border-transparent rounded-lg hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 transition md:rounded-r-md bg-transparent"
+                      className="p-2 text-zinc-500 rounded-lg border border-zinc-200 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 transition shadow-sm md:shadow-none md:border-transparent md:rounded-l-none md:rounded-r-md bg-transparent"
                     >
                       <MoreHorizontal className="h-[18px] w-[18px] stroke-[2px]" />
                     </button>

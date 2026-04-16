@@ -61,7 +61,7 @@ export default function BookingsPage() {
 
   return (
     <AdminLayout>
-      <div className="mb-8 pl-1">
+      <div className="mb-8 pl-1 hidden md:block">
         <h1 className="text-[24px] font-bold text-zinc-900 dark:text-white tracking-tight">Bookings</h1>
         <p className="text-[15px] text-zinc-500 dark:text-zinc-400 mt-1">See upcoming and past events booked through your event type links.</p>
       </div>
