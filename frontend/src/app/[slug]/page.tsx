@@ -207,7 +207,7 @@ export default function BookingPage() {
             {step === "calendar" ? (
               <div className="flex flex-col md:flex-row gap-8 h-full">
                 {/* Calendar Column */}
-                <div className="flex-1 min-w-[320px]">
+                <div className="flex-1 w-full md:min-w-[320px]">
                   <h2 className="mb-6 text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Select a Date & Time</h2>
                   <div className="mb-4 flex items-center justify-between">
                     <button 
@@ -279,7 +279,7 @@ export default function BookingPage() {
                 
                 {/* Time Slots Column (Third Column) */}
                 {selectedDate && (
-                  <div className="w-[200px] flex flex-col pt-14 animate-in fade-in slide-in-from-right-4 duration-300 h-[480px]">
+                  <div className="w-full md:w-[200px] flex flex-col pt-6 md:pt-14 animate-in fade-in slide-in-from-right-4 duration-300 md:h-[480px]">
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="text-[15px] font-semibold text-zinc-900 dark:text-zinc-100">
                         {format(selectedDate, "EEE d")}
