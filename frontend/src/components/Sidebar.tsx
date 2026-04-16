@@ -9,7 +9,6 @@ const navigation = [
   { name: "Event types", href: "/", icon: LinkIcon, matchExact: true },
   { name: "Bookings", href: "/bookings", icon: Calendar, matchExact: false },
   { name: "Availability", href: "/availability", icon: Clock, matchExact: false },
-  { name: "More", href: "#", icon: MoreHorizontal, matchExact: false },
 ];
 
 export function Sidebar() {
