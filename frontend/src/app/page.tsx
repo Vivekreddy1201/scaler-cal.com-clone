@@ -206,34 +206,52 @@ export default function EventTypesPage() {
               </div>
 
               <div className="flex items-center gap-4 sm:gap-6 shrink-0" onClick={(e) => e.stopPropagation()}>
-                {/* Button Group */}
-                <div className="flex items-center md:rounded-md md:border border-transparent md:border-zinc-200 md:dark:border-zinc-800 relative">
+                {/* Desktop Button Group */}
+                <div className="hidden md:flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 shadow-sm relative">
                   <a
                     href={`/${event.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hidden md:flex p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-l-md bg-transparent"
+                    className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-l-md"
                     title="Open in new tab"
                   >
                     <ExternalLink className="h-[18px] w-[18px] stroke-[2px]" />
                   </a>
-                  <div className="hidden md:block w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
                   <button
                     onClick={() => copyToClipboard(event.id, event.slug)}
-                    className="hidden md:flex p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition bg-transparent"
+                    className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition"
                     title="Copy link"
                   >
                     {copiedId === event.id ? <Check className="h-[18px] w-[18px] text-green-500 stroke-[2px]" /> : <LinkIcon className="h-[18px] w-[18px] stroke-[2px]" />}
                   </button>
-                  <div className="hidden md:block w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="w-[1px] h-[34px] bg-zinc-200 dark:bg-zinc-800" />
                   <div className="relative">
                     <button
                       onClick={() => setActiveDropdown(activeDropdown === event.id ? null : event.id)}
-                      className="p-2 text-zinc-500 rounded-lg border border-zinc-200 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 transition shadow-sm md:shadow-none md:border-transparent md:rounded-l-none md:rounded-r-md bg-transparent"
+                      className="p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition rounded-r-md"
                     >
                       <MoreHorizontal className="h-[18px] w-[18px] stroke-[2px]" />
                     </button>
-                    {activeDropdown === event.id && (
+                  </div>
+                </div>
+
+                {/* Mobile Single Button (Identical to Availability) */}
+                <div className="md:hidden relative ml-4">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === event.id ? null : event.id);
+                    }}
+                    className="p-2 text-zinc-500 rounded-lg border border-zinc-200 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 transition shadow-sm"
+                  >
+                    <MoreHorizontal className="h-4 w-4" />
+                  </button>
+                </div>
+
+                {/* Dropdown Menu (Shared) */}
+                {activeDropdown === event.id && (
+                  <div className="relative z-50">
                       <>
                         <div
                           className="fixed inset-0 z-40"
@@ -256,7 +274,7 @@ export default function EventTypesPage() {
                       </>
                     )}
                   </div>
-                </div>
+                )}
               </div>
             </div>
           ))}
