@@ -1,3 +1,7 @@
+
+# THIS IS REQUIRED IF YOU ARE STARTING FRESH 
+# THIS IS EXTRA AS WE ARE USING PUBLIC DATABASE AND NO SIGNIN FOR ANY USER 
+
 from database import SessionLocal, engine
 from models import Base, EventType, Availability, Booking
 from datetime import time, datetime, timedelta
