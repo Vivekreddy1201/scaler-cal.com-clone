@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, Clock, Link as LinkIcon, MoreHorizontal, Search, Settings, User } from "lucide-react";
+import { Calendar, Clock, Link as LinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -17,18 +17,10 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile Top Header */}
-      <header className="md:hidden flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111] shrink-0">
-        <div className="flex items-center">
-          <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white pb-0.5">Cal.com</span>
-        </div>
-        <div className="flex items-center gap-4 text-zinc-500 dark:text-zinc-400">
-          <button><Search className="w-5 h-5" /></button>
-          <button><Settings className="w-5 h-5" /></button>
-          <button className="relative flex items-center justify-center w-6 h-6 rounded-full bg-zinc-200 dark:bg-zinc-800">
-            <User className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
-            <span className="absolute bottom-0 right-0 block w-2 h-2 rounded-full ring-2 ring-white dark:ring-[#111] bg-emerald-500"></span>
-          </button>
-        </div>
+      <header className="md:hidden flex items-center justify-between px-4 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111] shrink-0">
+        <Link href="/" className="flex items-center">
+          <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white pb-0.5 hover:opacity-80 transition-opacity">Cal.com</span>
+        </Link>
       </header>
 
       {/* Desktop Sidebar */}
@@ -37,7 +29,7 @@ export function Sidebar() {
           <div className="flex h-8 w-8 items-center justify-center rounded bg-gray-900 text-white font-bold dark:bg-white dark:text-black">
             C
           </div>
-          <span className="ml-3 text-lg font-bold text-gray-900 dark:text-white">Cal Clone</span>
+          <span className="ml-3 text-lg font-bold text-gray-900 dark:text-white">Cal.com</span>
         </div>
 
         <nav className="flex-1 space-y-1">
