@@ -933,8 +933,17 @@ function AvailabilityPageContent() {
   return (
     <AdminLayout>
       <div className="pl-1">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-          <div className="hidden md:block">
+        {/* Mobile FAB (Extracted) */}
+        <button
+          onClick={() => setShowNewScheduleModal(true)}
+          className="md:hidden fixed bottom-24 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
+        >
+          <Plus className="h-6 w-6 stroke-[2]" />
+        </button>
+
+        {/* Desktop Header */}
+        <div className="hidden md:flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+          <div>
             <h1 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Availability</h1>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Configure times when you are available for bookings.</p>
           </div>
@@ -944,14 +953,6 @@ function AvailabilityPageContent() {
           >
             <Plus className="mr-1.5 h-4 w-4" />
             New
-          </button>
-          
-          {/* Mobile FAB */}
-          <button
-            onClick={() => setShowNewScheduleModal(true)}
-            className="md:hidden fixed bottom-20 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
-          >
-            <Plus className="h-6 w-6 stroke-[2]" />
           </button>
         </div>
 

@@ -69,7 +69,7 @@ export function Sidebar() {
       </div>
 
       {/* Mobile Bottom Tab Navigation */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#111] pb-safe">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#111] pb-4">
         {navigation.map((item) => {
           let isActive = false;
           if (item.matchExact) {

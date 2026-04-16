@@ -134,8 +134,17 @@ export default function EventTypesPage() {
 
   return (
     <AdminLayout>
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
-        <div className="hidden md:block">
+      {/* Mobile FAB (Extracted outside hidden header) */}
+      <button
+        onClick={openNewForm}
+        className="md:hidden fixed bottom-24 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
+      >
+        <Plus className="h-6 w-6 stroke-[2]" />
+      </button>
+
+      {/* Desktop Header */}
+      <div className="hidden md:flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+        <div>
           <h1 className="text-[22px] font-bold text-zinc-900 dark:text-white tracking-tight">Event types</h1>
           <p className="text-[15px] text-zinc-500 dark:text-zinc-400 mt-1">Configure different events for people to book on your calendar.</p>
         </div>
@@ -156,14 +165,6 @@ export default function EventTypesPage() {
           >
             <Plus className="mr-1.5 h-[18px] w-[18px]" strokeWidth={2.5} />
             New
-          </button>
-          
-          {/* Mobile FAB */}
-          <button
-            onClick={openNewForm}
-            className="md:hidden fixed bottom-20 flex shadow-[0_4px_14px_rgba(0,0,0,0.5)] right-6 h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:scale-105 transition-transform z-40"
-          >
-            <Plus className="h-6 w-6 stroke-[2]" />
           </button>
         </div>
       </div>
