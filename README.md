@@ -155,6 +155,3 @@ cd frontend
 
 npm install  
 npm run dev  
-
-Assumptions  
-- Single default user (no authentication implemented)  
