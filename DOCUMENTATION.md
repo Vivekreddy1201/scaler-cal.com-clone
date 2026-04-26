@@ -81,4 +81,4 @@ The API endpoint `/api/public/slots/{slug}` intelligently computes exact time sl
 The project is fully prepared for an abstracted 1-click cloud lifecycle:
 - **Database Layer**: Managed PostgreSQL hosted on Render.
 - **Backend API Layer**: Containerized ASGI FastAPI application deployed automatically to Render, reading `DATABASE_URL` for stateful database injection.
-- **Frontend Layer**: Next.js distribution deployed via Vercel Edge networks (`https://scaler-slotsync-clone.vercel.app/`). Automatically points to the Production Render API endpoint via the Vercel variables.
+- **Frontend Layer**: Next.js distribution deployed via Vercel Edge networks (`https://slotsync-clone.vercel.app/`). Automatically points to the Production Render API endpoint via the Vercel variables.

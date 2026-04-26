@@ -4,7 +4,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import os
 
 print("Dropping and recreating public schema...")
-SQLALCHEMY_DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:Vivek%402006@localhost:5432/scaler_ag")
+SQLALCHEMY_DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:Vivek%402006@localhost:5432/slotsync")
 
 try:
     conn = psycopg2.connect(SQLALCHEMY_DATABASE_URL)

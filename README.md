@@ -57,7 +57,7 @@ Our stack is lean, type-safe, and highly scalable:
 
 ## 🚀 Live Production Deployment
 
-**🌐 Live URL:** [https://scaler-slotsync-clone.vercel.app/](https://scaler-slotsync-clone.vercel.app/)
+**🌐 Live URL:** [https://slotsync-clone.vercel.app/](https://slotsync-clone.vercel.app/)
 
 The codebase is natively configured for an immediate 1-click cloud deployment.
 
