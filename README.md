@@ -1,4 +1,4 @@
-Cal.com Clone - Full Stack Scheduling Platform
+SlotSync - Full Stack Scheduling Platform
 
 Description  
 This project is a full-stack scheduling and booking application inspired by Cal.com. It allows users to create event types, define availability, and share public booking links where others can schedule meetings.
