@@ -11,15 +11,6 @@ from jwt import PyJWTError as JWTError
 import models, schemas, crud, auth
 from database import engine, get_db
 
-try:
-    with engine.connect() as conn:
-        conn.execute(text("DROP SCHEMA public CASCADE;"))
-        conn.execute(text("CREATE SCHEMA public;"))
-        conn.commit()
-    print("Database wiped successfully.")
-except Exception as e:
-    print(f"Error wiping database: {e}")
-
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Scheduling Platform API")
