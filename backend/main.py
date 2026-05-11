@@ -11,9 +11,30 @@ from jwt import PyJWTError as JWTError
 import models, schemas, crud, auth
 from database import engine, get_db
 
+try:
+    with engine.connect() as conn:
+        conn.execute(text("DROP SCHEMA public CASCADE;"))
+        conn.execute(text("CREATE SCHEMA public;"))
+        conn.commit()
+    print("Database wiped successfully.")
+except Exception as e:
+    print(f"Error wiping database: {e}")
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Scheduling Platform API")
+
+import traceback
+from fastapi.responses import JSONResponse
+from fastapi import Request
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    print(f"Global exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal Server Error", "error": str(exc), "traceback": traceback.format_exc()}
+    )
 
 # Enable CORS for Next.js frontend
 app.add_middleware(
