@@ -1,7 +1,5 @@
 <div align="center">
-  <img src="https://slotsync.com/logo.svg" alt="SlotSync Logo" width="120" />
-  <br/>
-  <h1>Full-Stack Scheduling Platform</h1>
+  <h1>SlotSync Scheduling Platform</h1>
   <p>An elegant, high-performance scheduling web application built as a pixel-perfect replica of SlotSync.</p>
 
   <div>
